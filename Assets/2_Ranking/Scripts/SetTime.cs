@@ -9,6 +9,6 @@ public class SetTime : MonoBehaviour
     void Start()
     {
         // タイムアップ時のスコアを設定する
-        GetComponent<Text>().text = "PlayerTime : " + PlayerPrefs.GetFloat("R6").ToString() + "s";
+        GetComponent<Text>().text = "PlayerTime : " + PlayerPrefs.GetFloat("R6").ToString("f1") + "s";
     }
 }

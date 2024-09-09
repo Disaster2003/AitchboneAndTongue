@@ -17,6 +17,7 @@ public class SetRanking : MonoBehaviour
         // ランキング
         InitializeRankArray();
         Ranking();
+        Debug.Log(gameObject.name);
     }
 
     /// <summary>
@@ -70,7 +71,7 @@ public class SetRanking : MonoBehaviour
         // それぞれのランクの値を設定する
         for (int idx = 1; idx <= 5; idx++)
         {
-            txtRank.text += idx +  "." + rank[idx].ToString() + "s"; // ランク文字
+            txtRank.text += idx +  "." + rank[idx].ToString("f1") + "s"; // ランク文字
             txtRank.text += System.Environment.NewLine; // 改行文字をつけている
         }
     }

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // オブジェクトの不滅化
         DontDestroyOnLoad(this);
 
         state_scene = STATE_SCENE.TITLE;
