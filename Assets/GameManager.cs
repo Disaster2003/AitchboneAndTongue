@@ -8,13 +8,13 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// シーンの状態
     /// </summary>
-    private enum STATE_SCENE
+    public enum STATE_SCENE
     {
         TITLE = 0,  // タイトル画面
         PLAY = 1,   // プレイ画面
         RANKING,    // 結果画面
     }
-    private STATE_SCENE state_scene;
+    public static STATE_SCENE state_scene;
 
     // Start is called before the first frame update
     void Start()

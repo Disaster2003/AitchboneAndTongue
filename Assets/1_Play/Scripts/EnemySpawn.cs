@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawn : MonoBehaviour
+public class EnemySpawn : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
 
@@ -10,13 +10,13 @@ public class Spawn : MonoBehaviour
     void Start()
     {
         // 2ïbÇ≤Ç∆Ç…ê∂ê¨Ç∑ÇÈ
-        InvokeRepeating(nameof(EnemySpawn), 0, 1.5f);
+        InvokeRepeating(nameof(Spawn), 0, 1.5f);
     }
 
     /// <summary>
     /// ìGÇê∂ê¨Ç∑ÇÈ
     /// </summary>
-    private void EnemySpawn()
+    private void Spawn()
     {
         Instantiate(enemy);
     }

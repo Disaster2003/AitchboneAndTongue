@@ -34,5 +34,8 @@ public class Timer : MonoBehaviour
     {
         // タイムを記録する
         PlayerPrefs.SetFloat("R6", timer);
+
+        // 次のシーンへ
+        GameManager.state_scene = GameManager.STATE_SCENE.RANKING;
     }
 }

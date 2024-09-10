@@ -160,7 +160,6 @@ public class PlayerComponent : MonoBehaviour
             // ジャンプ中でダメージを受けた時の特別処理
             if (state_player == STATE_PLAYER.JUMP_RISE || state_player == STATE_PLAYER.JUMP_FALL)
             {
-                Debug.Log(gameObject);
                 transform.position = positionGround;
                 varRigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionY;
             }
@@ -168,6 +167,14 @@ public class PlayerComponent : MonoBehaviour
             state_player = STATE_PLAYER.DAMAGE;
             invincibleTime = 1;
             hp--;
+        }
+
+        // 回復する
+        if (collision.name.Contains("Meat"))
+        {
+            if (hp < 3)
+                hp++;
+            Destroy(collision.gameObject);
         }
     }
 
