@@ -33,6 +33,34 @@ public class PlayerComponent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // nullチェック
+        if (hp == 0)
+        {
+            Debug.Log("体力が未設定です");
+            return;
+        }
+        if (walk == null)
+        {
+            Debug.Log("プレイヤーの歩行画像が未設定です");
+            return;
+        }
+        if (jumpRise == null)
+        {
+            Debug.Log("プレイヤーのジャンプ画像が未設定です");
+            return;
+        }
+        if (jumpFall == null)
+        {
+            Debug.Log("プレイヤーの下降画像が未設定です");
+            return;
+        }
+        if (damage == null)
+        {
+            Debug.Log("プレイヤーのダメージ画像が未設定です");
+            return;
+        }
+
+
         // 剛体の初期化
         varRigidbody2D = GetComponent<Rigidbody2D>();
         varRigidbody2D.gravityScale = 5;
@@ -52,8 +80,10 @@ public class PlayerComponent : MonoBehaviour
     void Update()
     {
         // ゲーム終了
-        if(hp <= 0)
+        if (hp <= 0)
+        {
             Destroy(gameObject);
+        }
 
         switch (state_player)
         {
@@ -72,8 +102,10 @@ public class PlayerComponent : MonoBehaviour
                 PlayerAnimation(jumpRise);
 
                 // 下降
-                if(varRigidbody2D.velocity.y <= 0)
+                if (varRigidbody2D.velocity.y <= 0)
+                {
                     state_player = STATE_PLAYER.JUMP_FALL;
+                }
                 break;
             case STATE_PLAYER.JUMP_FALL:
                 PlayerAnimation(jumpFall);
@@ -134,7 +166,9 @@ public class PlayerComponent : MonoBehaviour
                 }
                 // 初期化
                 else if (i == animationSpriteArray.Length - 1)
+                {
                     spriteRenderer.sprite = animationSpriteArray[0];
+                }
             }
         }
         // 時間計測
@@ -143,16 +177,23 @@ public class PlayerComponent : MonoBehaviour
 
         // 半透明
         if (0 < invincibleTime)
+        {
             spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+        }
+        // 不透明
         else
+        {
             spriteRenderer.color = Color.white;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 無敵中
         if (invincibleTime > 0)
+        {
             return;
+        }
 
         // ダメージを受ける
         if (collision.name.Contains("Enemy"))
@@ -169,11 +210,13 @@ public class PlayerComponent : MonoBehaviour
             hp--;
         }
 
-        // 回復する
         if (collision.name.Contains("Meat"))
         {
+            // 回復する
             if (hp < 3)
+            {
                 hp++;
+            }
             Destroy(collision.gameObject);
         }
     }

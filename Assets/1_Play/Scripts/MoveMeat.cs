@@ -20,6 +20,13 @@ public class MoveMeat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // nullチェック
+        if(meat == null)
+        {
+            Debug.Log("肉の画像が未設定です");
+            return;
+        }
+
         // 初期配置
         transform.position = new Vector3(10, 0, 0);
 
@@ -50,6 +57,8 @@ public class MoveMeat : MonoBehaviour
 
         // 自身を破壊する
         if (transform.position.x <= POSITION_MOVE_END)
+        {
             Destroy(gameObject);
+        }
     }
 }

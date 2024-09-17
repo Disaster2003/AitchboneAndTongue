@@ -16,12 +16,20 @@ public class MeatSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // nullチェック
+        if(meat == null)
+        {
+            Debug.Log("肉のオブジェクトが未設定です");
+            return;
+        }
+
         // 肉を生成する
         if(timer <= 0)
         {
             timer = Random.Range(25, 40);
             Instantiate(meat);
         }
+        // 生成のインターバル
         timer += -Time.deltaTime;
     }
 }

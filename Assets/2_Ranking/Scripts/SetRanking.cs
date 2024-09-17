@@ -17,7 +17,6 @@ public class SetRanking : MonoBehaviour
         // ランキング
         InitializeRankArray();
         Ranking();
-        Debug.Log(gameObject.name);
     }
 
     /// <summary>
@@ -29,7 +28,10 @@ public class SetRanking : MonoBehaviour
         if (PlayerPrefs.HasKey("R1"))
         {
             for (int idx = 1; idx <= 5; idx++)
-                rank[idx] = PlayerPrefs.GetFloat("R" + idx); // データ領域読み込み
+            {
+                // データ領域読み込み
+                rank[idx] = PlayerPrefs.GetFloat("R" + idx);
+            }
 
             Debug.Log("データ領域を読み込みました。");
         }
@@ -37,8 +39,9 @@ public class SetRanking : MonoBehaviour
         {
             for (int idx = 1; idx <= 5; idx++)
             {
-                rank[idx] = 0; // ゼロで初期化
-                PlayerPrefs.SetFloat("R" + idx, rank[idx]); // ゼロを格納する
+                // ゼロで初期化・格納
+                rank[idx] = 0;
+                PlayerPrefs.SetFloat("R" + idx, rank[idx]);
             }
             Debug.Log("データ領域を初期化しました。");
         }
@@ -53,19 +56,27 @@ public class SetRanking : MonoBehaviour
         int newRank = 0; // まず今回のスコアを0位と仮定する
 
         for (int idx = 5; idx > 0; idx--)
+        {
             // 逆順 5...1
             if (rank[idx] < ELAPSED)
+            {
                 newRank = idx; // 新しいランクとして判定する
+            }
+        }
 
         // 0位のままでなかったらランクイン確定
         if (newRank != 0)
-        { 
+        {
             for (int idx = 5; idx > newRank; idx--)
+            {
                 rank[idx] = rank[idx - 1]; // 繰り下げ処理
+            }
             rank[newRank] = ELAPSED;       // 新ランクに登録
 
             for (int idx = 1; idx <= 5; idx++)
+            {
                 PlayerPrefs.SetFloat("R" + idx, rank[idx]); // データ領域に保存
+            }
         }
 
         // それぞれのランクの値を設定する

@@ -23,6 +23,23 @@ public class MoveEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // nullチェック
+        if (blue == null)
+        {
+            Debug.Log("青毛の犬画像が未設定です");
+            return;
+        }
+        if (blue == null)
+        {
+            Debug.Log("金毛の犬画像が未設定です");
+            return;
+        }
+        if (blue == null)
+        {
+            Debug.Log("白毛の犬画像が未設定です");
+            return;
+        }
+
         // 初期配置
         transform.position = new Vector3(10, -3.5f, 0);
 
@@ -53,7 +70,9 @@ public class MoveEnemy : MonoBehaviour
 
         // 自身を破壊する
         if (transform.position.x <= POSITION_MOVE_END)
+        {
             Destroy(gameObject);
+        }
     }
 
     /// <summary>
@@ -65,11 +84,14 @@ public class MoveEnemy : MonoBehaviour
         {
             timer = 0.3f;
             for (int i = 0; i < whichDog[kind_of_color].Length; i++)
+            {
                 if (spriteRenderer.sprite == whichDog[kind_of_color][i])
                 {
                     // 画像の最初へ
                     if (i == whichDog[kind_of_color].Length - 1)
+                    {
                         spriteRenderer.sprite = whichDog[kind_of_color][0];
+                    }
                     // 次の画像へ
                     else
                     {
@@ -77,7 +99,9 @@ public class MoveEnemy : MonoBehaviour
                         break;
                     }
                 }
+            }
         }
+        // カウントダウン
         timer += -Time.deltaTime;
     }
 }

@@ -9,7 +9,14 @@ public class EnemySpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 2秒ごとに生成する
+        // nullチェック
+        if (enemy == null)
+        {
+            Debug.Log("敵のオブジェクトが未設定です");
+            return;
+        }
+
+        // 1.5秒ごとに生成する
         InvokeRepeating(nameof(Spawn), 0, 1.5f);
     }
 

@@ -26,9 +26,13 @@ public class BackgroundComponent : MonoBehaviour
     {
         // 初期配置
         if (transform.childCount != 0)
+        {
             transform.position = Vector3.zero;
+        }
         else
+        {
             transform.position = new Vector3(POSITION_MOVE_END * -1, 0, 0);
+        }
 
         // 初期色
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -47,7 +51,9 @@ public class BackgroundComponent : MonoBehaviour
     {
         // 親オブジェクトなら動かす
         if (transform.childCount != 0)
+        {
             MoveBackground();
+        }
 
         switch (state_view)
         {
@@ -74,11 +80,14 @@ public class BackgroundComponent : MonoBehaviour
     /// </summary>
     private void MoveBackground()
     {
+        // 左へ移動
         transform.Translate(-Time.deltaTime, 0, 0);
 
         // 初期位置に戻す
         if (transform.position.x <= POSITION_MOVE_END)
+        {
             transform.position = Vector3.zero;
+        }
     }
 
     /// <summary>
@@ -89,7 +98,9 @@ public class BackgroundComponent : MonoBehaviour
     {
         // 次の景色へ
         if (spriteRenderer.color == colorBakcground[_state_view])
+        {
             state_view = _state_view;
+        }
 
         // 差分を徐々に加算する
         spriteRenderer.color = Color.Lerp(spriteRenderer.color, colorBakcground[_state_view], 0.5f * Time.deltaTime);
